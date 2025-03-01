@@ -6,7 +6,15 @@ const JUMP_VELOCITY = 4.5
 @export
 var camera : Camera3D
 
+
+
+
+var is_alive : bool = true
 func _physics_process(delta: float) -> void:
+	
+	if !is_alive:
+		return 
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -42,3 +50,13 @@ func _physics_process(delta: float) -> void:
 			var target_position = ray_result.position
 			target_position.y += 1.0 
 			look_at(target_position)
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Enemy"):
+		is_alive = false 
+		$Weapon.queue_free()
+		$MeshInstance3D.queue_free()
+		
+		
+	pass # Replace with function body.
