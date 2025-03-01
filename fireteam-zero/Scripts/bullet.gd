@@ -1,16 +1,16 @@
 extends Node3D
-@export
-var bullet_speed : float
 
-var bullet_direction : Vector3
+@export var bullet_speed: float = 50.0
+var bullet_direction: Vector3 = Vector3.ZERO
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	$Timer.connect("timeout" ,queue_free)
-	$Timer.set_wait_time(5)
-	$Timer.start()
+	# Destruir la bala después de 5 segundos
+	var timer = $Timer
+	timer.wait_time = 5
+	timer.one_shot = true
+	timer.start()
+	timer.timeout.connect(queue_free)  # Conectar correctamente la señal
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position += bullet_direction * bullet_speed * delta
+	if bullet_direction != Vector3.ZERO:
+		position += bullet_direction.normalized() * bullet_speed * delta

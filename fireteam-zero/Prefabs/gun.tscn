@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvwyswnsmelau"]
+
+[ext_resource type="Script" path="res://Scripts/gun.gd" id="1_vcdou"]
+[ext_resource type="PackedScene" uid="uid://c5h0vkjs2xtyy" path="res://Prefabs/bullet.tscn" id="2_xi28d"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_aw0qi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4yhh1"]
+albedo_color = Color(0.0431373, 0.0470588, 0.0196078, 1)
+
+[node name="Gun" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_vcdou")
+bullet_prefab = ExtResource("2_xi28d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.865657, 0, 0, 0, 0.252077, 0, 0, 0, 0.259677, 0, 0, 0)
+mesh = SubResource("BoxMesh_aw0qi")
+surface_material_override/0 = SubResource("StandardMaterial3D_4yhh1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.316574, -0.0944806, 0, 0.270188, 0.110701, 0, 0, 0, 0.259677, -0.402365, -0.10274, -0.0251372)
+mesh = SubResource("BoxMesh_aw0qi")
+surface_material_override/0 = SubResource("StandardMaterial3D_4yhh1")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.188684, -0.129722, 0, 0.37097, -0.06598, 0, 0, 0, 0.259677, 0.154064, -0.175717, -0.0182469)
+mesh = SubResource("BoxMesh_aw0qi")
+surface_material_override/0 = SubResource("StandardMaterial3D_4yhh1")
+
+[node name="ShootPosition" type="Node3D" parent="."]
+transform = Transform3D(-0.994049, 0, 0.108936, 0, 0.999999, 0, -0.108936, 0, -0.994049, 0.307937, 0.0146656, 0.0170839)

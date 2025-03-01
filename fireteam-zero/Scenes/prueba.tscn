@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbhepfbldten4"]
+
+[ext_resource type="PackedScene" uid="uid://cawxhacrrehw3" path="res://player/player_3d.tscn" id="1_3gu0p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8p4b"]
+albedo_color = Color(0.528201, 0.600779, 0.634312, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kus7m"]
+material = SubResource("StandardMaterial3D_h8p4b")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2n1pa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ye24"]
+albedo_color = Color(0.529412, 0.6, 0.635294, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s4ann"]
+material = SubResource("StandardMaterial3D_2ye24")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qhdkt"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("BoxMesh_kus7m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_2n1pa")
+
+[node name="Ramp" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(11.6466, -0.0159156, -0.0203173, 0.0236313, 8.64513, 3.73018, 0.00933674, -2.02787, 15.9025, 15.2419, -2.03112, 5.79223)
+mesh = SubResource("BoxMesh_s4ann")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/Ramp"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ramp/StaticBody3D"]
+shape = SubResource("BoxShape3D_qhdkt")
+
+[node name="Player3D" parent="." instance=ExtResource("1_3gu0p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.360024, 0.5, -1.00012)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.997049, 0, -0.0767711, -0.0619283, 0.591014, 0.804281, 0.0453728, 0.806661, -0.58927, 0, 8.99778, -12.0287)

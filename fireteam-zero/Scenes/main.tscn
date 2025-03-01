@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://ckyuykeqrfc0o"]
+[gd_scene load_steps=15 format=3 uid="uid://ckyuykeqrfc0o"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_q1g68"]
 [ext_resource type="Script" path="res://Scripts/camera_spring_arm.gd" id="2_a6bot"]
+[ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://addons/gdquest_gobot/gobot_skin.tscn" id="2_g0ta0"]
 [ext_resource type="Script" path="res://Scripts/weapon.gd" id="2_j6g2t"]
 [ext_resource type="PackedScene" uid="uid://c5h0vkjs2xtyy" path="res://Prefabs/bullet.tscn" id="3_li2o7"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="5_hyhl6"]
@@ -10,19 +11,19 @@
 vertices = PackedVector3Array(8.75, 0.769409, -2, 9.25, 1.01941, -2, 9.25, 0.769409, -24.5, -24.5, 0.769409, -0.75, 8.75, 0.769409, -0.5, -24.5, 0.769409, -24.5, 21.75, 0.769409, -2.25, 21.75, 0.769409, -0.75, 24.5, 0.769409, -1, 24.5, 0.769409, -24.5, 9.75, 1.01941, -2, 9.75, 1.51941, 0, 20.75, 1.51941, 0, 20.75, 1.01941, -2.25, 21.75, 0.769409, 12.5, 24.5, 0.769409, 12.75, 10.25, 0.769409, 24.5, 10.5, 0.769409, 14.25, 8.75, 0.769409, 14, -24.5, 0.769409, 24.5, 9.75, 4.51941, 12.25, 20.75, 4.51941, 12.25, 10, 0.769409, 4.25, 10, 0.769409, 12.5, 20.5, 0.769409, 12.5, 20.5, 0.769409, 4.25, 21.5, 0.769409, 14.25, 24.5, 0.769409, 24.5)
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(2, 0, 5), PackedInt32Array(5, 0, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(9, 6, 13), PackedInt32Array(10, 1, 13), PackedInt32Array(13, 1, 2), PackedInt32Array(13, 2, 9), PackedInt32Array(7, 8, 14), PackedInt32Array(14, 8, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(4, 18, 3), PackedInt32Array(3, 18, 19), PackedInt32Array(21, 20, 12), PackedInt32Array(12, 20, 11), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(14, 15, 26), PackedInt32Array(26, 15, 27), PackedInt32Array(17, 26, 16), PackedInt32Array(16, 26, 27)]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8p4b"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dj24h"]
 albedo_color = Color(0.528201, 0.600779, 0.634312, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_y6ul5"]
-material = SubResource("StandardMaterial3D_h8p4b")
+material = SubResource("StandardMaterial3D_dj24h")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n06ow"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ye24"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_el3lg"]
 albedo_color = Color(0.529412, 0.6, 0.635294, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pldiw"]
-material = SubResource("StandardMaterial3D_2ye24")
+material = SubResource("StandardMaterial3D_el3lg")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5i6kj"]
 
@@ -75,8 +76,13 @@ script = ExtResource("1_q1g68")
 SPEED = 9.0
 camera = NodePath("../CameraSpringArm/Camera3D")
 
+[node name="GobotSkin" parent="Player" instance=ExtResource("2_g0ta0")]
+transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 0, 2.98023e-08, 0)
+blink = false
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_4oi57")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
@@ -96,13 +102,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.244881, 0.151001, 0, -0.0503336, 0.7346
 mesh = SubResource("BoxMesh_xatix")
 
 [node name="ShootPosition" type="Node3D" parent="Player/Weapon"]
-transform = Transform3D(-0.492127, -0.661486, -0.565904, -0.494539, 0.747427, -0.443603, 0.71641, 0.061552, -0.69496, -0.313578, 0.810147, -0.863673)
-
-[node name="Area3D" type="Area3D" parent="Player"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Area3D"]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_qud6c")
+transform = Transform3D(0.511821, 0.638005, 0.575317, -0.711267, 0.690277, -0.132727, -0.481809, -0.341271, 0.80709, -0.356328, 0.54497, -0.865758)
 
 [node name="CameraSpringArm" type="SpringArm3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(0.866025, 0.353553, 0.353553, 0, 0.707107, -0.707107, -0.5, 0.612372, 0.612372, 0, 10, 0)
