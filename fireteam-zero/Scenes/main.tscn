@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ckyuykeqrfc0o"]
+[gd_scene load_steps=23 format=3 uid="uid://ckyuykeqrfc0o"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_jey00"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_q1g68"]
@@ -6,7 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/camera_spring_arm.gd" id="2_a6bot"]
 [ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://addons/gdquest_gobot/gobot_skin.tscn" id="2_g0ta0"]
 [ext_resource type="PackedScene" uid="uid://dtxxoyt3oupf7" path="res://player/Skeleton.tscn" id="2_l15h2"]
-[ext_resource type="PackedScene" uid="uid://dvwyswnsmelau" path="res://Prefabs/gun.tscn" id="6_70f03"]
+[ext_resource type="PackedScene" uid="uid://blojaill7xj7s" path="res://Prefabs/blaster.tscn" id="7_aa1gj"]
+[ext_resource type="Script" path="res://Scripts/MainCamera3d.gd" id="8_7tx5a"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ijqg8"]
 vertices = PackedVector3Array(8.75, 0.769409, -2, 9.25, 1.01941, -2, 9.25, 0.769409, -24.5, -24.5, 0.769409, -0.75, 8.75, 0.769409, -0.5, -24.5, 0.769409, -24.5, 21.75, 0.769409, -2.25, 21.75, 0.769409, -0.75, 24.5, 0.769409, -1, 24.5, 0.769409, -24.5, 9.75, 1.01941, -2, 9.75, 1.51941, 0, 20.75, 1.51941, 0, 20.75, 1.01941, -2.25, 21.75, 0.769409, 12.5, 24.5, 0.769409, 12.75, 10.25, 0.769409, 24.5, 10.5, 0.769409, 14.25, 8.75, 0.769409, 14, -24.5, 0.769409, 24.5, 9.75, 4.51941, 12.25, 20.75, 4.51941, 12.25, 10, 0.769409, 4.25, 10, 0.769409, 12.5, 20.5, 0.769409, 12.5, 20.5, 0.769409, 4.25, 21.5, 0.769409, 14.25, 24.5, 0.769409, 24.5)
@@ -31,6 +32,41 @@ material = SubResource("StandardMaterial3D_el3lg")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4oi57"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kespv"]
+
+[sub_resource type="Curve" id="Curve_rx040"]
+_data = [Vector2(0, 0.742241), 0.0, 0.0, 0, 0, Vector2(0.139952, 0.986755), 0.129787, 0.129787, 0, 0, Vector2(0.631579, 1), 0.0, 0.0, 0, 0, Vector2(0.785885, 0.873668), -1.98736, -1.98736, 0, 0, Vector2(1, 0.0148119), -5.26067, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_8asvs"]
+width = 32
+curve = SubResource("Curve_rx040")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lclfu"]
+lifetime_randomness = 0.33
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 0.1
+initial_velocity_max = 0.35
+gravity = Vector3(0, 0.5, 0)
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = 0.199998
+scale_min = 0.8
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_8asvs")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpdwg"]
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.212644, 0.206381, 0.0118574, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_j6e5t"]
+material = SubResource("StandardMaterial3D_kpdwg")
+radius = 0.15
+height = 0.3
+radial_segments = 8
+rings = 8
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_jey00")
@@ -86,9 +122,19 @@ mesh = SubResource("CapsuleMesh_4oi57")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_kespv")
 
-[node name="Gun" parent="Player" instance=ExtResource("6_70f03")]
-transform = Transform3D(-0.150243, 0, 0.988649, 0, 1, 0, -0.988649, 0, -0.150243, -0.745413, 0.879165, -0.704267)
-shoot_rate = 0.05
+[node name="DustParticles" type="GPUParticles3D" parent="Player"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.052657, 0.140697, 0.307081)
+cast_shadow = 0
+gi_mode = 0
+amount = 10
+lifetime = 0.7
+explosiveness = 0.05
+process_material = SubResource("ParticleProcessMaterial_lclfu")
+draw_pass_1 = SubResource("SphereMesh_j6e5t")
+
+[node name="Blaster" parent="Player" instance=ExtResource("7_aa1gj")]
+transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -0.463434, 0.280213, -0.832882)
 
 [node name="CameraSpringArm" type="SpringArm3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(0.866025, 0.353553, 0.353553, 0, 0.707107, -0.707107, -0.5, 0.612372, 0.612372, 0, 10, 0)
@@ -98,6 +144,9 @@ player = NodePath("../Player")
 
 [node name="Camera3D" type="Camera3D" parent="CameraSpringArm" groups=["Camera"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("8_7tx5a")
+max_shake_strength = 0.25
+shake_fallout = 5.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.997049, 0, -0.0767711, -0.0619283, 0.591014, 0.804281, 0.0453728, 0.806661, -0.58927, 0, 8.99778, -12.0287)

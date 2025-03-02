@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://blojaill7xj7s"]
+
+[ext_resource type="PackedScene" uid="uid://b2p7bbkuxf7m" path="res://models/blaster.glb" id="1_ceyet"]
+[ext_resource type="Script" path="res://Scripts/blaster.gd" id="2_ew35u"]
+[ext_resource type="PackedScene" uid="uid://c5h0vkjs2xtyy" path="res://Prefabs/bullet.tscn" id="3_kfyr4"]
+[ext_resource type="Texture2D" uid="uid://btxi1o4lv1dr6" path="res://sprites/MuzzleFlash.png" id="4_urhaa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qa43v"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+albedo_texture = ExtResource("4_urhaa")
+emission_enabled = true
+emission = Color(0.0509804, 0, 0.380392, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_iskcu"]
+material = SubResource("StandardMaterial3D_qa43v")
+
+[node name="Blaster" node_paths=PackedStringArray("shoot_position") instance=ExtResource("1_ceyet")]
+script = ExtResource("2_ew35u")
+bullet_prefab = ExtResource("3_kfyr4")
+shoot_position = NodePath("ShootPosition")
+
+[node name="ShootPosition" type="Node3D" parent="." index="1"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 0.999999, 0, 8.74228e-08, 0, -1, -0.0145048, 0.419163, 0.844246)
+
+[node name="MuzzleFlash" type="Node3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.999998, 0, 0, 0, 1, -0.00512841, 0.409625, 0.920558)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MuzzleFlash" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0.023455, -0.521316, 1.02525e-09, 0.999725, 0.0122308, 4.36994e-08, -0.0245545, 0.0866023, 0.498919)
+mesh = SubResource("QuadMesh_iskcu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MuzzleFlash" index="1"]
+transform = Transform3D(0.0226873, -0.521325, -4.37114e-08, -9.91694e-10, 2.27878e-08, -1, 0.999743, 0.0118305, 1.91069e-15, -0.0245545, 0.0866023, 0.498919)
+mesh = SubResource("QuadMesh_iskcu")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MuzzleFlash" index="2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+light_color = Color(0.498039, 0.435294, 1, 1)
+light_energy = 2.0
+
+[node name="Timer" type="Timer" parent="MuzzleFlash" index="3"]

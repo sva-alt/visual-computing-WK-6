@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://cawxhacrrehw3"]
+[gd_scene load_steps=12 format=3 uid="uid://cawxhacrrehw3"]
 
 [ext_resource type="Script" path="res://player/player_3d.gd" id="1_61hbt"]
 [ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://addons/gdquest_gobot/gobot_skin.tscn" id="1_fh4qy"]
-[ext_resource type="PackedScene" uid="uid://dvwyswnsmelau" path="res://Prefabs/gun.tscn" id="4_oq7uc"]
+[ext_resource type="PackedScene" uid="uid://blojaill7xj7s" path="res://Prefabs/blaster.tscn" id="3_768qr"]
+[ext_resource type="Script" path="res://Scripts/pruebacamera_3d.gd" id="4_8dej5"]
 
 [sub_resource type="Curve" id="Curve_ywgtv"]
 _data = [Vector2(0, 0.742241), 0.0, 0.0, 0, 0, Vector2(0.139952, 0.986755), 0.129787, 0.129787, 0, 0, Vector2(0.631579, 1), 0.0, 0.0, 0, 0, Vector2(0.785885, 0.873668), -1.98736, -1.98736, 0, 0, Vector2(1, 0.0148119), -5.26067, 0.0, 0, 0]
 point_count = 5
 
-[sub_resource type="CurveTexture" id="CurveTexture_8asvs"]
+[sub_resource type="CurveTexture" id="CurveTexture_xdjhd"]
 width = 32
 curve = SubResource("Curve_ywgtv")
 
@@ -25,15 +26,15 @@ tangential_accel_min = -2.23517e-06
 tangential_accel_max = 0.199998
 scale_min = 0.8
 scale_max = 1.2
-scale_curve = SubResource("CurveTexture_8asvs")
+scale_curve = SubResource("CurveTexture_xdjhd")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpdwg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2xhv"]
 shading_mode = 2
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.212644, 0.206381, 0.0118574, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_5pydp"]
-material = SubResource("StandardMaterial3D_kpdwg")
+material = SubResource("StandardMaterial3D_h2xhv")
 radius = 0.15
 height = 0.3
 radial_segments = 8
@@ -53,9 +54,6 @@ unique_name_in_owner = true
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 blink = false
 
-[node name="Gun" parent="GobotSkin" instance=ExtResource("4_oq7uc")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0.346986, 0.389612, 0.344174)
-
 [node name="DustParticles" type="GPUParticles3D" parent="GobotSkin"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.136607, -0.190934)
@@ -66,6 +64,9 @@ lifetime = 0.7
 explosiveness = 0.05
 process_material = SubResource("ParticleProcessMaterial_vlntv")
 draw_pass_1 = SubResource("SphereMesh_5pydp")
+
+[node name="Blaster" parent="GobotSkin" instance=ExtResource("3_768qr")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.268422, 0.221513, 0.398689)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.709159, 0)
@@ -83,3 +84,4 @@ spring_length = 10.0
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" groups=["Camera"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 3.55271e-14, 0, 1, 5.96046e-08, 2.13163e-14, -5.96046e-08, 1, 0, 0, 0)
+script = ExtResource("4_8dej5")
