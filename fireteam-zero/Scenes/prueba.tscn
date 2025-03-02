@@ -1,6 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbhepfbldten4"]
+[gd_scene load_steps=11 format=3 uid="uid://cbhepfbldten4"]
 
 [ext_resource type="PackedScene" uid="uid://cawxhacrrehw3" path="res://player/player_3d.tscn" id="1_3gu0p"]
+[ext_resource type="Script" path="res://Scripts/prueba.gd" id="1_hwj3c"]
+[ext_resource type="PackedScene" uid="uid://dtxxoyt3oupf7" path="res://player/Skeleton.tscn" id="2_0wrto"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_3y8dx"]
+vertices = PackedVector3Array(8.75, 0.769409, -2, 9.25, 1.01941, -2, 9.25, 0.769409, -24.5, -24.5, 0.769409, -0.75, 8.75, 0.769409, -0.5, -24.5, 0.769409, -24.5, 21.75, 0.769409, -2.25, 21.75, 0.769409, -0.75, 24.5, 0.769409, -1, 24.5, 0.769409, -24.5, 9.75, 1.01941, -2, 9.75, 1.51941, 0, 20.75, 1.51941, 0, 20.75, 1.01941, -2.25, 21.75, 0.769409, 12.5, 24.5, 0.769409, 12.75, 10.25, 0.769409, 24.5, 10.5, 0.769409, 14.25, 8.75, 0.769409, 14, -24.5, 0.769409, 24.5, 9.75, 4.51941, 12.25, 20.75, 4.51941, 12.25, 10, 0.769409, 4.25, 10, 0.769409, 12.5, 20.5, 0.769409, 12.5, 20.5, 0.769409, 4.25, 21.5, 0.769409, 14.25, 24.5, 0.769409, 24.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(2, 0, 5), PackedInt32Array(5, 0, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(9, 6, 13), PackedInt32Array(10, 1, 13), PackedInt32Array(13, 1, 2), PackedInt32Array(13, 2, 9), PackedInt32Array(7, 8, 14), PackedInt32Array(14, 8, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(4, 18, 3), PackedInt32Array(3, 18, 19), PackedInt32Array(21, 20, 12), PackedInt32Array(12, 20, 11), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(14, 15, 26), PackedInt32Array(26, 15, 27), PackedInt32Array(17, 26, 16), PackedInt32Array(16, 26, 27)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8p4b"]
 albedo_color = Color(0.528201, 0.600779, 0.634312, 1)
@@ -19,25 +25,29 @@ material = SubResource("StandardMaterial3D_2ye24")
 [sub_resource type="BoxShape3D" id="BoxShape3D_qhdkt"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_hwj3c")
 
-[node name="Map" type="Node3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_3y8dx")
 
-[node name="Floor" type="MeshInstance3D" parent="Map"]
+[node name="Map" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="NavigationRegion3D/Map"]
 transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
 mesh = SubResource("BoxMesh_kus7m")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/Floor"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Map/Floor"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Floor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Map/Floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_2n1pa")
 
-[node name="Ramp" type="MeshInstance3D" parent="Map"]
+[node name="Ramp" type="MeshInstance3D" parent="NavigationRegion3D/Map"]
 transform = Transform3D(11.6466, -0.0159156, -0.0203173, 0.0236313, 8.64513, 3.73018, 0.00933674, -2.02787, 15.9025, 15.2419, -2.03112, 5.79223)
 mesh = SubResource("BoxMesh_s4ann")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/Ramp"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Map/Ramp"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ramp/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Map/Ramp/StaticBody3D"]
 shape = SubResource("BoxShape3D_qhdkt")
 
 [node name="Player3D" parent="." instance=ExtResource("1_3gu0p")]
@@ -45,3 +55,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.360024, 0.5, -1.00012)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.997049, 0, -0.0767711, -0.0619283, 0.591014, 0.804281, 0.0453728, 0.806661, -0.58927, 0, 8.99778, -12.0287)
+
+[node name="Enemy" parent="." groups=["Enemy"] instance=ExtResource("2_0wrto")]
+transform = Transform3D(-0.999902, 0, 0.0140147, 0, 1, 0, -0.0140147, 0, -0.999902, 1.83491, 0.499999, 9.51697)
