@@ -30,7 +30,6 @@ func _process(delta: float) -> void:
 		navigation_agent.set_target_position(player.global_position)
 		
 		velocity = global_position.direction_to(navigation_agent.get_next_path_position())* move_speed
-		
 		move_and_slide()
 		
 	pass

@@ -54,9 +54,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Enemy"):
-		is_alive = false 
-		$Weapon.queue_free()
-		$MeshInstance3D.queue_free()
+		is_alive = false
+		if get_node_or_null("Weapon") != null:
+			$Gun.queue_free()
+		if get_node_or_null("MeshInstance3D") != null:	 
+			$MeshInstance3D.queue_free()
 		
 		
 	pass # Replace with function body.

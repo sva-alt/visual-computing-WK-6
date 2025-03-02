@@ -56,5 +56,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.360024, 0.5, -1.00012)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.997049, 0, -0.0767711, -0.0619283, 0.591014, 0.804281, 0.0453728, 0.806661, -0.58927, 0, 8.99778, -12.0287)
 
-[node name="Enemy" parent="." groups=["Enemy"] instance=ExtResource("2_0wrto")]
-transform = Transform3D(-0.999902, 0, 0.0140147, 0, 1, 0, -0.0140147, 0, -0.999902, 1.83491, 0.499999, 9.51697)
+[node name="Enemy" parent="." instance=ExtResource("2_0wrto")]

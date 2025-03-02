@@ -8,7 +8,6 @@
 
 [node name="Bullet" type="Node3D"]
 script = ExtResource("1_ndhkn")
-bullet_speed = 15.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)

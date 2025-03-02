@@ -4,15 +4,13 @@
 [ext_resource type="Script" path="res://Scripts/skeleton.gd" id="2_a72ol"]
 [ext_resource type="Script" path="res://Scripts/UI/EnemyUI.gd" id="3_e7tf6"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_japgv"]
-radius = 0.529945
-height = 2.27041
+[sub_resource type="SphereShape3D" id="SphereShape3D_lrsrd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v338p"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_y0d66"]
 
-[node name="Enemy" instance=ExtResource("1_yvr7g")]
+[node name="Enemy" groups=["Enemy"] instance=ExtResource("1_yvr7g")]
 script = ExtResource("2_a72ol")
 initial_health = 20.0
 
@@ -106,7 +104,7 @@ target_desired_distance = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115846, 1.2566, -0.059055)
-shape = SubResource("CapsuleShape3D_japgv")
+shape = SubResource("SphereShape3D_lrsrd")
 
 [node name="Area3D" type="Area3D" parent="." index="4"]
 
