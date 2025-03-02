@@ -6,7 +6,7 @@ signal foot_step
 ## Gobot's MeshInstance3D model.
 @export var gobot_model: MeshInstance3D
 ## Determines whether blinking is enabled or disabled.
-@export var blink = true : set = _set_blink
+
 @export var _left_eye_mat_override: String
 @export var _right_eye_mat_override: String
 @export var _open_eye: CompressedTexture2D
@@ -28,41 +28,7 @@ signal foot_step
 
 
 func _ready():
-		if _blink_timer: #Verificar que el timer existe.
-				_blink_timer.connect(
-						"timeout",
-						func():
-								_left_eye_mat.albedo_texture = _close_eye
-								_right_eye_mat.albedo_texture = _close_eye
-								if _closed_eyes_timer: #Verificar que el timer existe.
-										_closed_eyes_timer.start(0.2)
-				)
-
-		if _closed_eyes_timer: #Verificar que el timer existe.
-				_closed_eyes_timer.connect(
-						"timeout",
-						func():
-								_left_eye_mat.albedo_texture = _open_eye
-								_right_eye_mat.albedo_texture = _open_eye
-								if _blink_timer: #Verificar que el timer existe.
-										_blink_timer.start(randf_range(1.0, 8.0))
-				)
-
-		_set_blink(blink) #Inicializar el parpadeo en _ready.
-
-func _set_blink(state: bool):
-		if blink == state:
-				return
-		blink = state
-		if blink:
-				if _blink_timer: #Verificar que el timer existe.
-						_blink_timer.start(randf_range(1.0, 8.0))
-		else:
-				if _blink_timer: #Verificar que el timer existe.
-						_blink_timer.stop()
-				if _closed_eyes_timer: #Verificar que el timer existe.
-						_closed_eyes_timer.stop()
-
+	pass
 ## Sets the model to a neutral, action-free state.
 func idle():
 		_state_machine.travel("Idle")

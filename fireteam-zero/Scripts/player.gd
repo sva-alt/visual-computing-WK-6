@@ -1,33 +1,34 @@
 extends CharacterBody3D
 
-@export
-var SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-@export
-var camera : Camera3D
+@export var SPEED = 8.0
+const JUMP_VELOCITY = 6.0
 
 
+@export var camera: Camera3D
 
 
-var is_alive : bool = true
+var is_alive: bool = true
+
+# Nodo que controla las animaciones del personaje (asegúrate de tenerlo en la escena, por ejemplo "GobotSkin")
+@onready var _skin: Node = $GobotSkin
+
 func _physics_process(delta: float) -> void:
-	
-	if !is_alive:
+	if not is_alive:
 		return 
-	
-	# Add the gravity.
+
+	# Aplicar gravedad
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	# Manejar salto
+	var is_starting_jump := Input.is_action_just_pressed("jump") and is_on_floor()
+	if is_starting_jump:
+		velocity.y += JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector( "right", "left", "back", "forward")
+	# Movimiento
+	var input_dir := Input.get_vector("move_right", "move_left", "move_down", "move_up")
 	var direction := (Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
+	if direction != Vector3.ZERO:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
@@ -35,30 +36,42 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-	
+
+	# Orientación hacia el cursor usando intersección de rayo
 	var mouse_pos = get_viewport().get_mouse_position()
-	var ray_origin =  camera.project_ray_origin(mouse_pos)
-	var ray_direction = camera.project_ray_normal(mouse_pos) *  500
-	var ray_query = PhysicsRayQueryParameters3D.create(ray_origin,ray_direction)
+	var ray_origin = camera.project_ray_origin(mouse_pos)
+	var ray_direction = camera.project_ray_normal(mouse_pos)
+	var ray_length = 500.0
+	var ray_end = ray_origin + ray_direction * ray_length
 	
+	var ray_query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
 	ray_query.collide_with_bodies = true
-	var space_states = get_world_3d().direct_space_state
-	var ray_result = space_states.intersect_ray(ray_query)
+	var space_state = get_world_3d().direct_space_state
+	var ray_result = space_state.intersect_ray(ray_query)
 	
-	if !ray_result.is_empty():
+	if ray_result and ray_result.has("position"):
+		# Evitar que se mire a sí mismo
 		if ray_result.collider != self:
 			var target_position = ray_result.position
+			# Ajustar altura (opcional, dependiendo de tu personaje)
 			target_position.y += 1.0 
-			look_at(target_position)
-
+			look_at(target_position, Vector3.UP)
+	
+	# --- Animación ---
+	if is_starting_jump:
+		_skin.jump()  # Método definido en tu nodo de animación
+	elif not is_on_floor() and velocity.y < 0:
+		_skin.fall()  # Método definido en tu nodo de animación
+	elif is_on_floor():
+		if velocity.length() > 0.1:
+			_skin.run()   # Método definido en tu nodo de animación
+		else:
+			_skin.idle()  # Método definido en tu nodo de animación
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Enemy"):
 		is_alive = false
 		if get_node_or_null("Weapon") != null:
 			$Blaster.queue_free()
-		if get_node_or_null("MeshInstance3D") != null:	 
+		if get_node_or_null("MeshInstance3D") != null:
 			$MeshInstance3D.queue_free()
-		
-		
-	pass # Replace with function body.

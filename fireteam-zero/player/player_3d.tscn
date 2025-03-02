@@ -52,7 +52,8 @@ script = ExtResource("1_61hbt")
 [node name="GobotSkin" parent="." instance=ExtResource("1_fh4qy")]
 unique_name_in_owner = true
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-blink = false
+_left_eye_mat_override = "1"
+_right_eye_mat_override = "1"
 
 [node name="DustParticles" type="GPUParticles3D" parent="GobotSkin"]
 unique_name_in_owner = true

@@ -111,7 +111,6 @@ camera = NodePath("../CameraSpringArm/Camera3D")
 
 [node name="GobotSkin" parent="Player" instance=ExtResource("2_g0ta0")]
 transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 0, 2.98023e-08, 0)
-blink = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
