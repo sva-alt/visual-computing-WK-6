@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtxxoyt3oupf7"]
+[gd_scene load_steps=17 format=3 uid="uid://dtxxoyt3oupf7"]
 
 [ext_resource type="PackedScene" uid="uid://fra3qrk6j6yn" path="res://addons/Characters/gltf/Skeleton_Warrior.glb" id="1_yvr7g"]
 [ext_resource type="Script" path="res://Scripts/skeleton.gd" id="2_a72ol"]
 [ext_resource type="Script" path="res://Scripts/UI/EnemyUI.gd" id="3_e7tf6"]
+[ext_resource type="AudioStream" uid="uid://bnell4v86u8b6" path="res://sounds/skeleton-dying.mp3" id="4_tr3uo"]
+[ext_resource type="AudioStream" uid="uid://cmf0a2uit3dy3" path="res://sounds/bite.mp3" id="5_kn3dl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v338p"]
 radius = 0.921007
@@ -167,6 +169,13 @@ shape = SubResource("CapsuleShape3D_h7rgb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_mkof1")
+
+[node name="death" type="AudioStreamPlayer3D" parent="." index="8"]
+stream = ExtResource("4_tr3uo")
+
+[node name="bite" type="AudioStreamPlayer3D" parent="." index="9"]
+stream = ExtResource("5_kn3dl")
+volume_db = -14.79
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

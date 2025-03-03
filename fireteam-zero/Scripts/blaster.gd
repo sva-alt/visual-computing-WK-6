@@ -3,7 +3,7 @@ extends Node3D
 @export var bullet_prefab: PackedScene
 @export var shoot_position: Node3D = null  # Punto de disparo
 @export var shoot_rate: float = 0.25
-
+@onready var shoot_sound = $shoot
 var shoot_timer: float = 0.0
 
 func _ready():
@@ -35,5 +35,6 @@ func _process(delta):
 		bullet.bullet_direction = (global_transform.basis.z)
 		$MuzzleFlash.visible = true
 		$MuzzleFlash/Timer.start()
+		shoot_sound.play()
 		get_parent().camera.shake_camera()
 		
