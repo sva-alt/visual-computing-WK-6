@@ -67,3 +67,9 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area.is_in_group("Bullet"):
 		current_health -= 10
 		$Control/TextureProgressBar.value = current_health
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Player"):
+		get_tree().call_group("Player","hurt", 10)
+	pass # Replace with function body.

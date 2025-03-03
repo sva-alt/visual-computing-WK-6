@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @export var SPEED = 8.0
 const JUMP_VELOCITY = 6.0
+var health = 100
 
 @onready var progress = $CanvasLayer/ProgressBar
 @onready var timer = $"../Timer"
@@ -14,6 +15,18 @@ var is_alive: bool = true
 # Nodo que controla las animaciones del personaje (asegúrate de tenerlo en la escena, por ejemplo "GobotSkin")
 @onready var _skin: Node = $GobotSkin
 
+func hurt(hit_poins):
+	if hit_poins < health:
+		health -= hit_poins
+	else:
+		health = 0
+	$ProgressBar.value = health
+	if health == 0:
+		die()
+	pass
+
+func die ():
+	pass
 func _physics_process(delta: float) -> void:
 	if not is_alive:
 		return 
