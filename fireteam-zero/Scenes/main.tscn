@@ -150,6 +150,15 @@ draw_pass_1 = SubResource("SphereMesh_j6e5t")
 [node name="Blaster" parent="Player" instance=ExtResource("7_aa1gj")]
 transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -0.463434, 0.280213, -0.832882)
 
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+offset_left = 44.0
+offset_top = 33.0
+offset_right = 281.0
+offset_bottom = 62.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4pp1t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1t3yl")
+value = 100.0
+
 [node name="CameraSpringArm" type="SpringArm3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(0.866025, 0.353553, 0.353553, 0, 0.707107, -0.707107, -0.5, 0.612372, 0.612372, 0, 10, 0)
 spring_length = -15.0
@@ -167,18 +176,13 @@ transform = Transform3D(-0.997049, 0, -0.0767711, -0.0619283, 0.591014, 0.804281
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 44.0
-offset_top = 33.0
-offset_right = 281.0
-offset_bottom = 60.0
-theme_override_styles/background = SubResource("StyleBoxFlat_4pp1t")
-theme_override_styles/fill = SubResource("StyleBoxFlat_1t3yl")
-value = 100.0
-
-[node name="Timer" type="Timer" parent="."]
+[node name="HurtTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
+<<<<<<< HEAD
 [connection signal="child_exiting_tree" from="Map/EnemySpawner" to="Map/EnemySpawner" method="_on_child_exiting_tree"]
 [connection signal="timeout" from="Timer" to="Player" method="_on_timer_timeout"]
+=======
+[connection signal="timeout" from="HurtTimer" to="Player" method="_on_hurt_timer_timeout"]
+>>>>>>> 60e189c3e419a982c6dbc97071e3ead6707223cd
