@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c1544cpbu2lv2"
+path="res://.godot/imported/Primitive_Floor.obj-8ab9a51b849b0de95fe98df562c14d17.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Primitive_Floor.obj-8ab9a51b849b0de95fe98df562c14d17.mesh"]
+
+source_file="res://assets/kaykit_prototype_bits/Assets/obj/Primitive_Floor.obj"
+dest_files=["res://.godot/imported/Primitive_Floor.obj-8ab9a51b849b0de95fe98df562c14d17.mesh", "res://.godot/imported/Primitive_Floor.obj-8ab9a51b849b0de95fe98df562c14d17.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

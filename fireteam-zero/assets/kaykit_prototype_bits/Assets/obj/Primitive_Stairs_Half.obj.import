@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bcp7yr8h2wuhu"
+path="res://.godot/imported/Primitive_Stairs_Half.obj-5fdc1a3da24077fba7df2d91dc08fd06.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Primitive_Stairs_Half.obj-5fdc1a3da24077fba7df2d91dc08fd06.mesh"]
+
+source_file="res://assets/kaykit_prototype_bits/Assets/obj/Primitive_Stairs_Half.obj"
+dest_files=["res://.godot/imported/Primitive_Stairs_Half.obj-5fdc1a3da24077fba7df2d91dc08fd06.mesh", "res://.godot/imported/Primitive_Stairs_Half.obj-5fdc1a3da24077fba7df2d91dc08fd06.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ck0j6w23k7lhb"
+path="res://.godot/imported/Primitive_Slope.obj-08870d91bb76f7df24f6bcfa2c963676.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Primitive_Slope.obj-08870d91bb76f7df24f6bcfa2c963676.mesh"]
+
+source_file="res://assets/kaykit_prototype_bits/Assets/obj/Primitive_Slope.obj"
+dest_files=["res://.godot/imported/Primitive_Slope.obj-08870d91bb76f7df24f6bcfa2c963676.mesh", "res://.godot/imported/Primitive_Slope.obj-08870d91bb76f7df24f6bcfa2c963676.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

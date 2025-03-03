@@ -1,11 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://ckyuykeqrfc0o"]
+[gd_scene load_steps=29 format=3 uid="uid://ckyuykeqrfc0o"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_jey00"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_q1g68"]
 [ext_resource type="Script" path="res://Scripts/enemy_spawner.gd" id="1_s26gl"]
+[ext_resource type="ArrayMesh" uid="uid://b4183qpl0ge8v" path="res://assets/kaykit_prototype_bits/Assets/obj/Floor.obj" id="2_283ot"]
 [ext_resource type="Script" path="res://Scripts/camera_spring_arm.gd" id="2_a6bot"]
 [ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://addons/gdquest_gobot/gobot_skin.tscn" id="2_g0ta0"]
 [ext_resource type="PackedScene" uid="uid://dtxxoyt3oupf7" path="res://player/Skeleton.tscn" id="2_l15h2"]
+[ext_resource type="ArrayMesh" uid="uid://ck0j6w23k7lhb" path="res://assets/kaykit_prototype_bits/Assets/obj/Primitive_Slope.obj" id="3_vmxj8"]
 [ext_resource type="PackedScene" uid="uid://blojaill7xj7s" path="res://Prefabs/blaster.tscn" id="7_aa1gj"]
 [ext_resource type="Script" path="res://Scenes/current_score_label.gd" id="7_krv5d"]
 [ext_resource type="Script" path="res://Scripts/MainCamera3d.gd" id="8_7tx5a"]
@@ -93,6 +95,15 @@ script = ExtResource("1_jey00")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Map"]
 navigation_mesh = SubResource("NavigationMesh_ijqg8")
 
+[node name="Floor2" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.06308, 0.850646, -19.2886)
+mesh = ExtResource("2_283ot")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/NavigationRegion3D/Floor2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/Floor2/StaticBody3D"]
+
 [node name="Floor" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
 transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
 mesh = SubResource("BoxMesh_y6ul5")
@@ -103,8 +114,13 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/Floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_n06ow")
 
+[node name="PrimitiveSlope" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3924, 0.5, -12.387)
+mesh = ExtResource("3_vmxj8")
+skeleton = NodePath("../../..")
+
 [node name="Ramp" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
-transform = Transform3D(11.6466, -0.0159156, -0.0203173, 0.0236313, 8.64513, 3.73018, 0.00933674, -2.02787, 15.9025, 15.2419, -2.03112, 5.79223)
+transform = Transform3D(11.6466, -0.0159156, -0.0203173, 0.0236313, 8.64513, 3.73018, 0.00933674, -2.02787, 15.9025, 13.0899, -1.78558, 4.39897)
 mesh = SubResource("BoxMesh_pldiw")
 skeleton = NodePath("../..")
 

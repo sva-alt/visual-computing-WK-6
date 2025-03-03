@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://duam0s6q6di0o"
+path="res://.godot/imported/Primitive_Wall_Short.obj-cbcfa28b1135bcf4c6b242becbfc3249.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Primitive_Wall_Short.obj-cbcfa28b1135bcf4c6b242becbfc3249.mesh"]
+
+source_file="res://assets/kaykit_prototype_bits/Assets/obj/Primitive_Wall_Short.obj"
+dest_files=["res://.godot/imported/Primitive_Wall_Short.obj-cbcfa28b1135bcf4c6b242becbfc3249.mesh", "res://.godot/imported/Primitive_Wall_Short.obj-cbcfa28b1135bcf4c6b242becbfc3249.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

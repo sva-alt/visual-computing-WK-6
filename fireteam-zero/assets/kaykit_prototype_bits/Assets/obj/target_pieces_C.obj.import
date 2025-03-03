@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ble0f0q2db4qq"
+path="res://.godot/imported/target_pieces_C.obj-32fa4e50c3fea02e845e05c219a30a1f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/target_pieces_C.obj-32fa4e50c3fea02e845e05c219a30a1f.mesh"]
+
+source_file="res://assets/kaykit_prototype_bits/Assets/obj/target_pieces_C.obj"
+dest_files=["res://.godot/imported/target_pieces_C.obj-32fa4e50c3fea02e845e05c219a30a1f.mesh", "res://.godot/imported/target_pieces_C.obj-32fa4e50c3fea02e845e05c219a30a1f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
