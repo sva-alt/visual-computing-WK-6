@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ckyuykeqrfc0o"]
+[gd_scene load_steps=25 format=3 uid="uid://w8p0yhbt1qwb"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_jey00"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_q1g68"]
@@ -180,9 +180,4 @@ transform = Transform3D(-0.997049, 0, -0.0767711, -0.0619283, 0.591014, 0.804281
 wait_time = 0.1
 one_shot = true
 
-<<<<<<< HEAD
-[connection signal="child_exiting_tree" from="Map/EnemySpawner" to="Map/EnemySpawner" method="_on_child_exiting_tree"]
-[connection signal="timeout" from="Timer" to="Player" method="_on_timer_timeout"]
-=======
 [connection signal="timeout" from="HurtTimer" to="Player" method="_on_hurt_timer_timeout"]
->>>>>>> 60e189c3e419a982c6dbc97071e3ead6707223cd
