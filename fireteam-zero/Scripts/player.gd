@@ -33,6 +33,7 @@ func hurt(hit_poins):
 
 func die ():
 	is_dead = true
+	get_tree().reload_current_scene()
 	pass
 func _physics_process(delta: float) -> void:
 	if not is_alive:

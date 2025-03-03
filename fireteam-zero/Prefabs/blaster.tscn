@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://blojaill7xj7s"]
+[gd_scene load_steps=8 format=3 uid="uid://blojaill7xj7s"]
 
 [ext_resource type="PackedScene" uid="uid://b2p7bbkuxf7m" path="res://models/blaster.glb" id="1_ceyet"]
 [ext_resource type="Script" path="res://Scripts/blaster.gd" id="2_ew35u"]
 [ext_resource type="PackedScene" uid="uid://c5h0vkjs2xtyy" path="res://Prefabs/bullet.tscn" id="3_kfyr4"]
 [ext_resource type="Texture2D" uid="uid://btxi1o4lv1dr6" path="res://sprites/MuzzleFlash.png" id="4_urhaa"]
+[ext_resource type="AudioStream" uid="uid://blxqudiclpq84" path="res://sounds/enemy_attack.ogg" id="5_slsv3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qa43v"]
 transparency = 1
@@ -42,3 +43,6 @@ light_color = Color(0.498039, 0.435294, 1, 1)
 light_energy = 2.0
 
 [node name="Timer" type="Timer" parent="MuzzleFlash" index="3"]
+
+[node name="shoot" type="AudioStreamPlayer3D" parent="." index="3"]
+stream = ExtResource("5_slsv3")

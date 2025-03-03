@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 @onready var nav = $NavigationAgent3D  # Asegúrate de tener un AnimationPlayer con las animaciones
 @onready var state_machine =$AnimationTree.get("parameters/playback")
+@onready var death_sound = $death
+
 var speed = 3.5
 var gravity = 9.8
 var is_dying = false
@@ -55,7 +57,9 @@ func _physics_process(delta):
 func _die():
 	is_dying = true
 	velocity = Vector3.ZERO  # Detiene el movimiento
+	death_sound.play()
 	state_machine.travel("Death_C_Skeletons")
+	
 	  # Cambia a animación de muerte
 	Global.current_score += points_for_kill
 	await get_tree().create_timer(5.0).timeout  # Espera antes de eliminar
