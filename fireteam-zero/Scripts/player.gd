@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export var SPEED = 8.0
 const JUMP_VELOCITY = 6.0
 
+@onready var progress = $CanvasLayer/ProgressBar
+@onready var timer = $"../Timer"
 
 @export var camera: Camera3D
 
@@ -70,8 +72,16 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Enemy"):
-		is_alive = false
+		timer.start()
+		if progress.value <=0:
+			is_alive = false
 		if get_node_or_null("Weapon") != null:
 			$Blaster.queue_free()
 		if get_node_or_null("MeshInstance3D") != null:
 			$MeshInstance3D.queue_free()
+			
+
+
+func _on_timer_timeout() -> void:
+	progress.value-=50
+	pass # Replace with function body.

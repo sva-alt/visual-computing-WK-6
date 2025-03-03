@@ -7,6 +7,10 @@ var gravity = 9.8
 var is_dying = false
 var can_chase = false
 
+#health bar
+
+
+
 @export var initial_health: float
 var current_health: float
 

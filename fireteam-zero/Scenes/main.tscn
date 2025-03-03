@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ckyuykeqrfc0o"]
+[gd_scene load_steps=25 format=3 uid="uid://ckyuykeqrfc0o"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_jey00"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_q1g68"]
@@ -67,6 +67,21 @@ radius = 0.15
 height = 0.3
 radial_segments = 8
 rings = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pp1t"]
+bg_color = Color(0.732032, 0.0321623, 0.116009, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1t3yl"]
+bg_color = Color(0.285862, 0.704244, 0, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_jey00")
@@ -149,3 +164,20 @@ shake_fallout = 5.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.997049, 0, -0.0767711, -0.0619283, 0.591014, 0.804281, 0.0453728, 0.806661, -0.58927, 0, 8.99778, -12.0287)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 44.0
+offset_top = 33.0
+offset_right = 281.0
+offset_bottom = 60.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4pp1t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1t3yl")
+value = 100.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="Player" method="_on_timer_timeout"]
