@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/jump_a.ogg-df3a87b422b8537163b811137ab76d0c.o
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4
