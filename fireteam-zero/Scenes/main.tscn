@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://w8p0yhbt1qwb"]
+[gd_scene load_steps=27 format=3 uid="uid://ckyuykeqrfc0o"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_jey00"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_q1g68"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://addons/gdquest_gobot/gobot_skin.tscn" id="2_g0ta0"]
 [ext_resource type="PackedScene" uid="uid://dtxxoyt3oupf7" path="res://player/Skeleton.tscn" id="2_l15h2"]
 [ext_resource type="PackedScene" uid="uid://blojaill7xj7s" path="res://Prefabs/blaster.tscn" id="7_aa1gj"]
+[ext_resource type="Script" path="res://Scenes/current_score_label.gd" id="7_krv5d"]
 [ext_resource type="Script" path="res://Scripts/MainCamera3d.gd" id="8_7tx5a"]
+[ext_resource type="Script" path="res://Scenes/highest_score_label.gd" id="8_y6nsv"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ijqg8"]
 vertices = PackedVector3Array(8.75, 0.769409, -2, 9.25, 1.01941, -2, 9.25, 0.769409, -24.5, -24.5, 0.769409, -0.75, 8.75, 0.769409, -0.5, -24.5, 0.769409, -24.5, 21.75, 0.769409, -2.25, 21.75, 0.769409, -0.75, 24.5, 0.769409, -1, 24.5, 0.769409, -24.5, 9.75, 1.01941, -2, 9.75, 1.51941, 0, 20.75, 1.51941, 0, 20.75, 1.01941, -2.25, 21.75, 0.769409, 12.5, 24.5, 0.769409, 12.75, 10.25, 0.769409, 24.5, 10.5, 0.769409, 14.25, 8.75, 0.769409, 14, -24.5, 0.769409, 24.5, 9.75, 4.51941, 12.25, 20.75, 4.51941, 12.25, 10, 0.769409, 4.25, 10, 0.769409, 12.5, 20.5, 0.769409, 12.5, 20.5, 0.769409, 4.25, 21.5, 0.769409, 14.25, 24.5, 0.769409, 24.5)
@@ -112,7 +114,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_5i6kj")
 
 [node name="EnemySpawner" type="Node3D" parent="Map" node_paths=PackedStringArray("root_node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.26211, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5681, 2.26211, -18.8041)
 script = ExtResource("1_s26gl")
 enemy_prefab = ExtResource("2_l15h2")
 root_node = NodePath("../..")
@@ -158,6 +160,24 @@ offset_bottom = 62.0
 theme_override_styles/background = SubResource("StyleBoxFlat_4pp1t")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1t3yl")
 value = 100.0
+
+[node name="CurrentScore" type="RichTextLabel" parent="Player/ProgressBar"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 34.0
+offset_right = 238.0
+offset_bottom = 74.0
+text = "Current Score: 999999"
+script = ExtResource("7_krv5d")
+
+[node name="HighestScore" type="RichTextLabel" parent="Player/ProgressBar"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 59.0
+offset_right = 247.0
+offset_bottom = 99.0
+text = "Highest Score: 999999"
+script = ExtResource("8_y6nsv")
 
 [node name="CameraSpringArm" type="SpringArm3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(0.866025, 0.353553, 0.353553, 0, 0.707107, -0.707107, -0.5, 0.612372, 0.612372, 0, 10, 0)

@@ -12,6 +12,8 @@ var initial_health : float
 
 var current_health : float
 
+var points_for_kill = 100
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	current_health = initial_health    
@@ -21,7 +23,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
    
 	if current_health <= 0:
-		queue_free()
+		Global.current_score += points_for_kill
+		self.queue_free()
 	
 	if player == null:
 		player = get_tree().get_first_node_in_group("Player")

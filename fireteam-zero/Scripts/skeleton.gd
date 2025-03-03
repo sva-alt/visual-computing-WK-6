@@ -6,7 +6,7 @@ var speed = 3.5
 var gravity = 9.8
 var is_dying = false
 var can_chase = false
-
+var points_for_kill = 100
 #health bar
 
 
@@ -57,8 +57,9 @@ func _die():
 	velocity = Vector3.ZERO  # Detiene el movimiento
 	state_machine.travel("Death_C_Skeletons")
 	  # Cambia a animación de muerte
+	Global.current_score += points_for_kill
 	await get_tree().create_timer(5.0).timeout  # Espera antes de eliminar
-	queue_free()
+	self.queue_free()
 
 func target_position(target):
 	nav.target_position = target
