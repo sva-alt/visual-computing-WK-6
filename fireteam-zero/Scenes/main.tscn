@@ -202,7 +202,11 @@ max_shake_strength = 0.25
 shake_fallout = 5.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.997049, -2.60001e-08, -0.0767711, -0.0619283, 0.591014, 0.804281, 0.0453728, 0.806661, -0.58927, 8.16661, 1.23154, -18.5436)
+transform = Transform3D(-0.997049, -2.60001e-08, -0.0767711, -0.0619283, 0.591014, 0.804281, 0.0453728, 0.806661, -0.58927, 11.2594, 14.6934, -21.4993)
+light_color = Color(0.460972, 0.751787, 1, 1)
+light_energy = 1.485
+light_volumetric_fog_energy = 2.293
+light_angular_distance = 15.91
 sky_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
