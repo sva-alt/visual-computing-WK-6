@@ -5,27 +5,34 @@ const JUMP_VELOCITY = 6.0
 var health = 100
 
 @onready var progress = $CanvasLayer/ProgressBar
-@onready var timer = $"../Timer"
+
 
 @export var camera: Camera3D
 
 
 var is_alive: bool = true
 
+var is_hurt = false
+var is_dead = false
+
 # Nodo que controla las animaciones del personaje (asegúrate de tenerlo en la escena, por ejemplo "GobotSkin")
 @onready var _skin: Node = $GobotSkin
 
 func hurt(hit_poins):
-	if hit_poins < health:
-		health -= hit_poins
-	else:
-		health = 0
-	$ProgressBar.value = health
-	if health == 0:
-		die()
-	pass
+	if !is_hurt:
+		is_hurt = true
+		$"../HurtTimer".start()
+		if hit_poins < health:
+			health -= hit_poins
+		else:
+			health = 0
+		$ProgressBar.value = health
+		if health == 0:
+			die()
+	
 
 func die ():
+	is_dead = true
 	pass
 func _physics_process(delta: float) -> void:
 	if not is_alive:
@@ -43,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	# Movimiento
 	var input_dir := Input.get_vector("move_right", "move_left", "move_down", "move_up")
 	var direction := (Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction != Vector3.ZERO:
+	if direction != Vector3.ZERO and !is_hurt and !is_dead:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
@@ -85,7 +92,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Enemy"):
-		timer.start()
 		if progress.value <=0:
 			is_alive = false
 		if get_node_or_null("Weapon") != null:
@@ -95,6 +101,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			
 
 
-func _on_timer_timeout() -> void:
-	progress.value-=50
+func _on_hurt_timer_timeout() -> void:
+	is_hurt = false
 	pass # Replace with function body.

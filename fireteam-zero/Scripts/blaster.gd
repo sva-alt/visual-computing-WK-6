@@ -19,7 +19,7 @@ func _ready():
 func _process(delta):
 	shoot_timer += delta
 
-	if Input.is_action_pressed("shoot") and shoot_timer >= shoot_rate:
+	if Input.is_action_pressed("shoot") and shoot_timer >= shoot_rate and not get_parent().is_dead:
 		shoot_timer = 0
 		var bullet = bullet_prefab.instantiate()
 		
