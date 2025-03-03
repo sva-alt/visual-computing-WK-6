@@ -18,3 +18,8 @@ func hit():
 func _process(delta):
 	if bullet_direction != Vector3.ZERO:
 		position += bullet_direction.normalized() * bullet_speed * delta
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	queue_free()
+	pass # Replace with function body.
