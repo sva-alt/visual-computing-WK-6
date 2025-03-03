@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_bf11m"]
 [ext_resource type="Texture2D" uid="uid://c5q2oeyu3do8v" path="res://addons/images/city-pixel-art-ikwo30isu1j1iz3w.jpg" id="1_qfyjx"]
-[ext_resource type="FontFile" uid="uid://b861i63msdlmj" path="res://addons/Fonts/Pixel Game Extrude.otf" id="3_nxsl6"]
-[ext_resource type="FontFile" uid="uid://djo7arrh7gvw1" path="res://addons/Fonts/Pixel Game.otf" id="4_povxe"]
+[ext_resource type="FontFile" uid="uid://b861i63msdlmj" path="res://addons/fonts/Pixel Game Extrude.otf" id="3_nxsl6"]
+[ext_resource type="FontFile" uid="uid://djo7arrh7gvw1" path="res://addons/fonts/Pixel Game.otf" id="4_povxe"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
