@@ -28,7 +28,11 @@ func _ready() -> void:
  
 
 func _physics_process(delta):
-	if current_health <= 0 and not is_dying or position.y < -10 :
+	if position.y < -10:
+		self.queue_free()
+		return
+		
+	if current_health <= 0 and not is_dying :
 		_die()  # Llama a la función de muerte
 	
 	if is_dying:
@@ -63,7 +67,7 @@ func _die():
 	
 	  # Cambia a animación de muerte
 	Global.current_score += points_for_kill
-	await get_tree().create_timer(5.0).timeout  # Espera antes de eliminar
+	await get_tree().create_timer(3.0).timeout  # Espera antes de eliminar
 	self.queue_free()
 
 func target_position(target):

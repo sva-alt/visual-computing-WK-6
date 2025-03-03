@@ -1,6 +1,6 @@
 extends RichTextLabel
 
-var default_text = 'CURRENT TEXT: '
+var default_text = 'CURRENT SCORE: '
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
