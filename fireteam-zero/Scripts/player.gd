@@ -80,9 +80,10 @@ func _physics_process(delta: float) -> void:
 		# Evitar que se mire a sí mismo
 		if ray_result.collider != self:
 			var target_position = ray_result.position
-			# Ajustar altura (opcional, dependiendo de tu personaje)
-			target_position.y += 1.0 
+			# Fijamos la altura para que no varíe
+			target_position.y = self.global_transform.origin.y
 			look_at(target_position, Vector3.UP)
+
 	
 	# --- Animación ---
 	if position.y < -10:

@@ -124,7 +124,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_5i6kj")
 
 [node name="EnemySpawner" type="Node3D" parent="Map" node_paths=PackedStringArray("root_node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5681, 2.26211, -18.8041)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.371245, 2.26211, -1.15925)
 script = ExtResource("1_s26gl")
 enemy_prefab = ExtResource("2_l15h2")
 root_node = NodePath("../..")
