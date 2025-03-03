@@ -10,6 +10,10 @@ func _ready():
 	timer.one_shot = true
 	timer.start()
 	timer.timeout.connect(queue_free)  # Conectar correctamente la señal
+	
+
+func hit():
+	self.queue_free()
 
 func _process(delta):
 	if bullet_direction != Vector3.ZERO:
