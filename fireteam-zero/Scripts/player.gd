@@ -42,6 +42,7 @@ func _physics_process(delta: float) -> void:
 	# Aplicar gravedad
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	
 
 	# Manejar salto
 	var is_starting_jump := Input.is_action_just_pressed("jump") and is_on_floor()
@@ -81,6 +82,8 @@ func _physics_process(delta: float) -> void:
 			look_at(target_position, Vector3.UP)
 	
 	# --- Animación ---
+	if position.y < -10:
+		get_tree().reload_current_scene()
 	if is_starting_jump:
 		_skin.jump()  # Método definido en tu nodo de animación
 	elif not is_on_floor() and velocity.y < 0:
