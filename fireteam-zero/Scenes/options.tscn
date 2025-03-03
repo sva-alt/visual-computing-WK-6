@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://vwkuqmowinom"]
 
 [ext_resource type="Script" path="res://Scripts/options.gd" id="1_8uppu"]
-[ext_resource type="Texture2D" uid="uid://3xi2upywk3vk" path="res://addons/images/city-pixel-art-ikwo30isu1j1iz3w.jpg" id="2_nkdhg"]
-[ext_resource type="FontFile" uid="uid://ccd8q7oks7qqp" path="res://addons/Fonts/Pixel Game Extrude.otf" id="3_4wrxn"]
-[ext_resource type="FontFile" uid="uid://fgrcjgdcrtn" path="res://addons/Fonts/Pixel Game.otf" id="3_pb0ak"]
+[ext_resource type="Texture2D" uid="uid://c5q2oeyu3do8v" path="res://addons/images/city-pixel-art-ikwo30isu1j1iz3w.jpg" id="2_nkdhg"]
+[ext_resource type="FontFile" uid="uid://b861i63msdlmj" path="res://addons/Fonts/Pixel Game Extrude.otf" id="3_4wrxn"]
+[ext_resource type="FontFile" uid="uid://djo7arrh7gvw1" path="res://addons/Fonts/Pixel Game.otf" id="3_pb0ak"]
 [ext_resource type="PackedScene" uid="uid://storerotv1a1" path="res://Scenes/h_slider.tscn" id="4_miy2v"]
 
 [node name="Options" type="Control"]
@@ -31,28 +31,6 @@ offset_bottom = 651.0
 texture = ExtResource("2_nkdhg")
 expand_mode = 1
 
-[node name="Res2" type="Label" parent="."]
-layout_mode = 2
-offset_left = 635.0
-offset_top = 251.0
-offset_right = 920.0
-offset_bottom = 323.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_4wrxn")
-theme_override_font_sizes/font_size = 70
-text = "RESOLUCION"
-
-[node name="vol2" type="Label" parent="."]
-layout_mode = 2
-offset_left = 189.0
-offset_top = 254.0
-offset_right = 499.0
-offset_bottom = 326.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_4wrxn")
-theme_override_font_sizes/font_size = 70
-text = "VOLUMEN"
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -72,27 +50,41 @@ theme_override_fonts/font = ExtResource("3_pb0ak")
 theme_override_font_sizes/font_size = 50
 text = "VOLVER"
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.093
-anchor_top = 0.935
-anchor_right = 0.093
-anchor_bottom = 0.935
-offset_left = 527.864
-offset_top = -354.88
-offset_right = 812.864
-offset_bottom = -242.88
-theme_override_constants/separation = 20
-
-[node name="Res" type="Label" parent="VBoxContainer3"]
+[node name="Control2" type="Control" parent="."]
 layout_mode = 2
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 656.0
+offset_right = 206.0
+offset_bottom = 656.0
+
+[node name="Res2" type="Label" parent="."]
+layout_mode = 2
+offset_left = 636.0
+offset_top = 160.0
+offset_right = 929.0
+offset_bottom = 241.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4wrxn")
+theme_override_font_sizes/font_size = 70
+text = "RESOLUCION"
+
+[node name="Res" type="Label" parent="."]
+layout_mode = 2
+offset_left = 638.0
+offset_top = 161.0
+offset_right = 923.0
+offset_bottom = 233.0
 theme_override_fonts/font = ExtResource("3_pb0ak")
 theme_override_font_sizes/font_size = 70
 text = "RESOLUCION"
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer3"]
+[node name="OptionButton" type="OptionButton" parent="."]
 layout_mode = 2
+offset_left = 635.0
+offset_top = 230.0
+offset_right = 920.0
+offset_bottom = 261.0
 selected = 0
 item_count = 6
 popup/item_0/text = "854 × 480"
@@ -107,34 +99,53 @@ popup/item_4/id = 4
 popup/item_5/text = " 3840 × 2160"
 popup/item_5/id = 5
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.299
-anchor_top = 0.589
-anchor_right = 0.299
-anchor_bottom = 0.589
-offset_left = -155.448
-offset_top = -127.672
-offset_right = 154.552
-offset_bottom = 127.328
-
-[node name="vol" type="Label" parent="VBoxContainer2"]
+[node name="Control" type="Control" parent="."]
 layout_mode = 2
+anchors_preset = 0
+offset_left = 189.0
+offset_top = 254.0
+offset_right = 499.0
+offset_bottom = 254.0
+
+[node name="vol2" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = -11.0
+offset_top = -93.0
+offset_right = 299.0
+offset_bottom = -12.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4wrxn")
+theme_override_font_sizes/font_size = 70
+text = "VOLUMEN"
+
+[node name="vol" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = -14.0
+offset_top = -91.0
+offset_right = 296.0
+offset_bottom = -19.0
 theme_override_fonts/font = ExtResource("3_pb0ak")
 theme_override_font_sizes/font_size = 70
 text = "VOLUMEN"
 
-[node name="HSlider" parent="VBoxContainer2" instance=ExtResource("4_miy2v")]
+[node name="HSlider" parent="Control" instance=ExtResource("4_miy2v")]
 layout_mode = 2
+offset_left = -19.0
+offset_top = -17.0
+offset_right = 291.0
+offset_bottom = -1.0
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer2"]
+[node name="CheckBox" type="CheckBox" parent="."]
 layout_mode = 2
+offset_left = 170.0
+offset_top = 237.0
+offset_right = 480.0
+offset_bottom = 297.0
 theme_override_fonts/font = ExtResource("3_pb0ak")
 theme_override_font_sizes/font_size = 50
 text = "MUTE"
 
 [connection signal="pressed" from="VBoxContainer/Volver" to="." method="_on_salir_pressed"]
 [connection signal="pressed" from="VBoxContainer/Volver" to="." method="_on_volver_pressed"]
-[connection signal="item_selected" from="VBoxContainer3/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="toggled" from="VBoxContainer2/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]
