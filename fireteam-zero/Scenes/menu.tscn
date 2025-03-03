@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0hmk5qqj7piq"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_bf11m"]
+[ext_resource type="Texture2D" uid="uid://c5q2oeyu3do8v" path="res://addons/images/city-pixel-art-ikwo30isu1j1iz3w.jpg" id="1_qfyjx"]
+[ext_resource type="FontFile" uid="uid://b861i63msdlmj" path="res://addons/Fonts/Pixel Game Extrude.otf" id="3_nxsl6"]
+[ext_resource type="FontFile" uid="uid://djo7arrh7gvw1" path="res://addons/Fonts/Pixel Game.otf" id="4_povxe"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bf11m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.43134, 0.43134, 0.43134, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 651.0
+scale = Vector2(1.00393, 1)
+texture = ExtResource("1_qfyjx")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.472
+anchor_right = 0.43
+anchor_bottom = 0.472
+offset_left = -189.36
+offset_top = -95.856
+offset_right = 305.64
+offset_bottom = 175.144
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_povxe")
+theme_override_font_sizes/font_size = 50
+text = "JUGAR"
+
+[node name="Opciones" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_povxe")
+theme_override_font_sizes/font_size = 50
+text = "OPCIONES"
+
+[node name="Salir" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_povxe")
+theme_override_font_sizes/font_size = 50
+text = "SALIR"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 1131.0
+offset_bottom = 205.0
+
+[node name="Label2" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33, 0.30459, 0.0759, 1)
+theme_override_fonts/font = ExtResource("3_nxsl6")
+theme_override_font_sizes/font_size = 116
+text = "Fire Team Zero"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.905726, 0.858517, 0.655979, 1)
+theme_override_fonts/font = ExtResource("4_povxe")
+theme_override_font_sizes/font_size = 116
+text = "Fire Team Zero"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Opciones" to="." method="_on_opciones_pressed"]
+[connection signal="pressed" from="VBoxContainer/Salir" to="." method="_on_salir_pressed"]

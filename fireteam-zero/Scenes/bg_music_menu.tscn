@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b45m51t8pij56"]
+
+[ext_resource type="AudioStream" uid="uid://i0rijsflu1i7" path="res://addons/music/Hotline Miami Soundtrack  Crystals.mp3" id="1_g8r04"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_g8r04")
+autoplay = true
