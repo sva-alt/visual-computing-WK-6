@@ -1,29 +1,25 @@
 extends Node3D
 
-@export
-var enemy_prefab : PackedScene
+@export var enemy_prefab: PackedScene
+@export var root_node: Node3D
+@export var spawn_rate: float = 1.0
 
-@export
-var root_node : Node3D
+var spawn_timer: float = 0.0
 
-@export
-var spawn_rate : float
-
-var spawn_timer : float
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_timer = spawn_rate
-	pass # Replace with function body.
 
+func _process(delta: float) -> void:
+	spawn_timer -= delta
+	if spawn_timer <= 0:
+		spawn_timer = spawn_rate
+		spawn_enemy()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if spawn_timer < spawn_rate:
-		spawn_timer += delta
-	if spawn_timer >= spawn_rate:
-		spawn_timer = 0
+func spawn_enemy() -> void:
+	if enemy_prefab and root_node:
 		var enemy = enemy_prefab.instantiate()
-		var rand_angle = randf_range(0, PI * 2) 
-		enemy.position = global_position *(Vector3.RIGHT * sin(rand_angle)*Vector3.FORWARD*cos(rand_angle)) * 20
+		var rand_angle = randf_range(0, TAU) # TAU es igual a 2 * PI
+		var spawn_distance = 20.0
+		var offset = Vector3(cos(rand_angle), 0, sin(rand_angle)) * spawn_distance
+		enemy.position = global_position + offset
 		root_node.add_child(enemy)
